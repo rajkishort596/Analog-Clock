@@ -10,7 +10,22 @@
       <div class="minute-hand"></div>
       <div class="second-hand"></div>
     </div>
+    <div class="toogleClass"><span class="bullet"></span>Light mode</div>
     <script>
+      //toogle Dark and light mode
+      const toogleClass = document.querySelector(".toogleClass");
+      toogleClass.addEventListener("click", () => {
+        document.body.classList.toggle("light");
+        if (document.body.classList.contains("light")) {
+          toogleClass.innerHTML = `<span class="bullet"></span>Dark mode`;
+          toogleClass.style.color = "#000";
+          toogleClass.firstElementChild.style.backgroundColor = "#000";
+        } else {
+          toogleClass.innerHTML = `<span class="bullet"></span>Light mode`;
+          toogleClass.style.color = "#fff";
+        }
+      });
+      //selecting hands of clock
       const clock = document.getElementById("clock");
       const hourHand = clock.querySelector(".hour-hand");
       const minuteHand = clock.querySelector(".minute-hand");
@@ -27,7 +42,7 @@
         const hourAngle = (hours % 12) * 30 + minutes * 0.5;
 
         secondHand.style.transform = `rotateZ(${secondAngle}deg) translateX(-50%)`;
-        minuteHand.style.transform = `rotateZ(${minuteAngle}deg) translateX(50%)`;
+        minuteHand.style.transform = `rotateZ(${minuteAngle}deg) translateX(-50%)`;
         hourHand.style.transform = `rotateZ(${hourAngle}deg) translateX(-50%)`;
       }
 
